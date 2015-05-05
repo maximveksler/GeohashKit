@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		045081591AF8B0F4008D78FF /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045081581AF8B0F4008D78FF /* GeohashTests.swift */; };
+		045B124D1AF47503004A1B5C /* GeohashKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 045B124C1AF47503004A1B5C /* GeohashKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		045B12531AF47503004A1B5C /* GeohashKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B12471AF47503004A1B5C /* GeohashKit.framework */; };
+		045F64F91AF7BD5800F52236 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F64F81AF7BD5800F52236 /* Geohash.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		045B12541AF47503004A1B5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 045B123E1AF47503004A1B5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 045B12461AF47503004A1B5C;
+			remoteInfo = GeohashKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		045081581AF8B0F4008D78FF /* GeohashTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeohashTests.swift; path = GeohashKitTests/GeohashTests.swift; sourceTree = SOURCE_ROOT; };
+		045B12471AF47503004A1B5C /* GeohashKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeohashKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		045B124B1AF47503004A1B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		045B124C1AF47503004A1B5C /* GeohashKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeohashKit.h; sourceTree = "<group>"; };
+		045B12521AF47503004A1B5C /* GeohashKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeohashKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		045B12581AF47503004A1B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		045F64F81AF7BD5800F52236 /* Geohash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		045B12431AF47503004A1B5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		045B124F1AF47503004A1B5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				045B12531AF47503004A1B5C /* GeohashKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		045B123D1AF47503004A1B5C = {
+			isa = PBXGroup;
+			children = (
+				045B12491AF47503004A1B5C /* GeohashKit */,
+				045B12561AF47503004A1B5C /* GeohashKitTests */,
+				045B12481AF47503004A1B5C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		045B12481AF47503004A1B5C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				045B12471AF47503004A1B5C /* GeohashKit.framework */,
+				045B12521AF47503004A1B5C /* GeohashKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		045B12491AF47503004A1B5C /* GeohashKit */ = {
+			isa = PBXGroup;
+			children = (
+				045F64F81AF7BD5800F52236 /* Geohash.swift */,
+				045B124C1AF47503004A1B5C /* GeohashKit.h */,
+				045B124A1AF47503004A1B5C /* Supporting Files */,
+			);
+			path = GeohashKit;
+			sourceTree = "<group>";
+		};
+		045B124A1AF47503004A1B5C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				045B124B1AF47503004A1B5C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		045B12561AF47503004A1B5C /* GeohashKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				045081581AF8B0F4008D78FF /* GeohashTests.swift */,
+				045B12571AF47503004A1B5C /* Supporting Files */,
+			);
+			path = GeohashKitTests;
+			sourceTree = "<group>";
+		};
+		045B12571AF47503004A1B5C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				045B12581AF47503004A1B5C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		045B12441AF47503004A1B5C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				045B124D1AF47503004A1B5C /* GeohashKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		045B12461AF47503004A1B5C /* GeohashKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 045B125D1AF47503004A1B5C /* Build configuration list for PBXNativeTarget "GeohashKit" */;
+			buildPhases = (
+				045B12421AF47503004A1B5C /* Sources */,
+				045B12431AF47503004A1B5C /* Frameworks */,
+				045B12441AF47503004A1B5C /* Headers */,
+				045B12451AF47503004A1B5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeohashKit;
+			productName = GeohashKit;
+			productReference = 045B12471AF47503004A1B5C /* GeohashKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		045B12511AF47503004A1B5C /* GeohashKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 045B12601AF47503004A1B5C /* Build configuration list for PBXNativeTarget "GeohashKitTests" */;
+			buildPhases = (
+				045B124E1AF47503004A1B5C /* Sources */,
+				045B124F1AF47503004A1B5C /* Frameworks */,
+				045B12501AF47503004A1B5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				045B12551AF47503004A1B5C /* PBXTargetDependency */,
+			);
+			name = GeohashKitTests;
+			productName = GeohashKitTests;
+			productReference = 045B12521AF47503004A1B5C /* GeohashKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		045B123E1AF47503004A1B5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Maxim Veksler";
+				TargetAttributes = {
+					045B12461AF47503004A1B5C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					045B12511AF47503004A1B5C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 045B12411AF47503004A1B5C /* Build configuration list for PBXProject "GeohashKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 045B123D1AF47503004A1B5C;
+			productRefGroup = 045B12481AF47503004A1B5C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				045B12461AF47503004A1B5C /* GeohashKit */,
+				045B12511AF47503004A1B5C /* GeohashKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		045B12451AF47503004A1B5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		045B12501AF47503004A1B5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		045B12421AF47503004A1B5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				045F64F91AF7BD5800F52236 /* Geohash.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		045B124E1AF47503004A1B5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				045081591AF8B0F4008D78FF /* GeohashTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		045B12551AF47503004A1B5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 045B12461AF47503004A1B5C /* GeohashKit */;
+			targetProxy = 045B12541AF47503004A1B5C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		045B125B1AF47503004A1B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		045B125C1AF47503004A1B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		045B125E1AF47503004A1B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GeohashKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		045B125F1AF47503004A1B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = GeohashKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		045B12611AF47503004A1B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeohashKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		045B12621AF47503004A1B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeohashKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		045B12411AF47503004A1B5C /* Build configuration list for PBXProject "GeohashKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				045B125B1AF47503004A1B5C /* Debug */,
+				045B125C1AF47503004A1B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		045B125D1AF47503004A1B5C /* Build configuration list for PBXNativeTarget "GeohashKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				045B125E1AF47503004A1B5C /* Debug */,
+				045B125F1AF47503004A1B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		045B12601AF47503004A1B5C /* Build configuration list for PBXNativeTarget "GeohashKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				045B12611AF47503004A1B5C /* Debug */,
+				045B12621AF47503004A1B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 045B123E1AF47503004A1B5C /* Project object */;
+}
