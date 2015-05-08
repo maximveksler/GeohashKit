@@ -46,7 +46,7 @@ let BORDERS : [CompassPoint : [Parity : String]] = [
 ]
 
 public class Geohash {
-    public static func encodeGeoHash(#latitude: Double, longitude: Double, _ precision: Int? = Optional.None) -> String {
+    public static func encode(#latitude: Double, longitude: Double, _ precision: Int? = Optional.None) -> String {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
