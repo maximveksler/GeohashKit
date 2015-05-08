@@ -22,6 +22,7 @@ prefix func !(a: Parity) -> Parity {
 }
 
 let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (1 => 1, 23 => r, 31 => z)
+let BASE32_BITFLOW_INIT = 0b10000
 
 let NEIGHBORS : [CompassPoint : [Parity : String]] = [
     .East  : [ .Even   : "bc01fg45238967deuvhjyznpkmstqrwx" ],
@@ -46,7 +47,7 @@ let BORDERS : [CompassPoint : [Parity : String]] = [
 ]
 
 public class Geohash {
-    public static func encode(#latitude: Double, longitude: Double, _ precision: Int? = Optional.None) -> String {
+    public static func encode(#latitude: Double, longitude: Double, var _ precision: Int? = Optional.None) -> String {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
@@ -56,7 +57,12 @@ public class Geohash {
         // Loop helpers
         var parity_mode = Parity.Even;
         var base32char = 0
-        var bit = 0b10000
+        var bit = BASE32_BITFLOW_INIT
+        
+        // Set precision to 5 if not specified.
+        if precision == nil {
+            precision = 5
+        }
         
         do {
             switch (parity_mode) {
@@ -85,13 +91,11 @@ public class Geohash {
 
             if(bit == 0b00000) {
                 geohash += String(BASE32[base32char])
-                bit = 0b10000 // set next character round.
+                bit = BASE32_BITFLOW_INIT // set next character round.
                 base32char = 0
             }
             
-        } while precision != nil ?
-            count(geohash) < precision : // Either precision is specified
-            bit != 0b10000 || (lat.1 - lat.0 > 0.05) || (lon.1 - lon.0 > 0.05) // or we use sane defaults
+        } while count(geohash) < precision
         
         return geohash
     }
