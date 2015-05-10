@@ -9,45 +9,9 @@
 //  Distributed under the MIT License
 //
 
-enum CompassPoint {
-    case North // Top
-    case South // Bottom
-    case East // Right
-    case West  // Left
-}
-
-enum Parity { case Even, Odd }
-prefix func !(a: Parity) -> Parity {
-    return a == .Even ? .Odd : .Even
-}
-
-let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (1 => 1, 23 => r, 31 => z)
-let BASE32_BITFLOW_INIT :UInt8 = 0b10000
-
-let NEIGHBORS : [CompassPoint : [Parity : String]] = [
-    .East  : [ .Even   : "bc01fg45238967deuvhjyznpkmstqrwx" ],
-    .East  : [ .Odd    : "p0r21436x8zb9dcf5h7kjnmqesgutwvy" ],
-    .West  : [ .Even   : "238967debc01fg45kmstqrwxuvhjyznp" ],
-    .West  : [ .Odd    : "14365h7k9dcfesgujnmqp0r2twvyx8zb" ],
-    .North : [ .Even   : "p0r21436x8zb9dcf5h7kjnmqesgutwvy" ],
-    .North : [ .Odd    : "bc01fg45238967deuvhjyznpkmstqrwx" ],
-    .South : [ .Even   : "14365h7k9dcfesgujnmqp0r2twvyx8zb" ],
-    .South : [ .Odd    : "238967debc01fg45kmstqrwxuvhjyznp" ]
-]
-
-let BORDERS : [CompassPoint : [Parity : String]] = [
-    .East  : [ .Even   : "bcfguvyz" ],
-    .East  : [ .Odd    : "prxz" ],
-    .West  : [ .Even   : "0145hjnp" ],
-    .West  : [ .Odd    : "028b" ],
-    .North : [ .Even   : "prxz" ],
-    .North : [ .Odd    : "bcfguvyz" ],
-    .South : [ .Even   : "028b" ],
-    .South : [ .Odd    : "0145hjnp" ]
-]
-
 public class Geohash {
-    public static func encode(#latitude: Double, longitude: Double, var _ precision: Int? = Optional.None) -> String {
+    // - MARK: Public
+    public static func encode(#latitude: Double, longitude: Double, var _ precision: Int? = nil) -> String {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
@@ -100,6 +64,11 @@ public class Geohash {
         return geohash
     }
     
+    public static func decode(hash: String) -> (latitude: Double, longitude: Double)? {
+        return unwrap_geohashbox(hash)?.point()
+    }
+
+    // - MARK: Private
     private static func unwrap_geohashbox(hash: String) -> GeohashBox? {
         var parity_mode = Parity.Even;
         var lat = (-90.0, 90.0)
@@ -135,8 +104,42 @@ public class Geohash {
 
         return GeohashBox(north: lat.0, south: lat.1, west: lon.0, east: lon.1)
     }
-    
-    public static func decode(hash: String) -> (latitude: Double, longitude: Double)? {
-        return unwrap_geohashbox(hash)?.point()
-    }
 }
+
+enum CompassPoint {
+    case North // Top
+    case South // Bottom
+    case East // Right
+    case West  // Left
+}
+
+enum Parity { case Even, Odd }
+prefix func !(a: Parity) -> Parity {
+    return a == .Even ? .Odd : .Even
+}
+
+let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (1 => 1, 23 => r, 31 => z)
+let BASE32_BITFLOW_INIT :UInt8 = 0b10000
+
+let NEIGHBORS : [CompassPoint : [Parity : String]] = [
+    .East  : [ .Even   : "bc01fg45238967deuvhjyznpkmstqrwx" ],
+    .East  : [ .Odd    : "p0r21436x8zb9dcf5h7kjnmqesgutwvy" ],
+    .West  : [ .Even   : "238967debc01fg45kmstqrwxuvhjyznp" ],
+    .West  : [ .Odd    : "14365h7k9dcfesgujnmqp0r2twvyx8zb" ],
+    .North : [ .Even   : "p0r21436x8zb9dcf5h7kjnmqesgutwvy" ],
+    .North : [ .Odd    : "bc01fg45238967deuvhjyznpkmstqrwx" ],
+    .South : [ .Even   : "14365h7k9dcfesgujnmqp0r2twvyx8zb" ],
+    .South : [ .Odd    : "238967debc01fg45kmstqrwxuvhjyznp" ]
+]
+
+let BORDERS : [CompassPoint : [Parity : String]] = [
+    .East  : [ .Even   : "bcfguvyz" ],
+    .East  : [ .Odd    : "prxz" ],
+    .West  : [ .Even   : "0145hjnp" ],
+    .West  : [ .Odd    : "028b" ],
+    .North : [ .Even   : "prxz" ],
+    .North : [ .Odd    : "bcfguvyz" ],
+    .South : [ .Even   : "028b" ],
+    .South : [ .Odd    : "0145hjnp" ]
+]
+
