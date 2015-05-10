@@ -12,6 +12,7 @@ import XCTest
 import GeohashKit
 
 class GeohashTests: XCTestCase {
+    // - MARK: encode
     func testEncode() {
         // geohash.org
         XCTAssertEqual(Geohash.encode(latitude: -25.383, longitude: -49.266, 8), "6gkzwgjt")
@@ -33,13 +34,21 @@ class GeohashTests: XCTestCase {
         // XCTAssertEqual(Geohash.encode(latitude: 0, longitude: 0), "s000") // => "s0000" :( hopefully will be resovled by #Issue:1
     }
     
-    
+    // - MARK: decode
+    func aDecodeUnitTest(hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
+        let point = Geohash.decode(hash);
+        
+        XCTAssertEqualWithAccuracy(point!.latitude, expectedLatitude, Double(FLT_EPSILON))
+        XCTAssertEqualWithAccuracy(point!.longitude, expectedLongitude, Double(FLT_EPSILON))
+    }
+
     func testDecode() {
-        let point = Geohash.decode("ezs42");
-        XCTAssertEqual(point!.latitude, 42.60498046875)
-        XCTAssertEqual(point!.longitude, -5.60302734375)
+        aDecodeUnitTest("ezs42", 42.60498046875, -5.60302734375)
+        aDecodeUnitTest("spey61y", 43.296432495117, 5.3702545166016)
     }
     
+    
+
 }
 
 
