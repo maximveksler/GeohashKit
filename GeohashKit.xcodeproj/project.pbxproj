@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		045081591AF8B0F4008D78FF /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045081581AF8B0F4008D78FF /* GeohashTests.swift */; };
+		0459355C1AFF59E5001D678B /* GeohashBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459355B1AFF59E5001D678B /* GeohashBox.swift */; };
 		045B124D1AF47503004A1B5C /* GeohashKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 045B124C1AF47503004A1B5C /* GeohashKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045B12531AF47503004A1B5C /* GeohashKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B12471AF47503004A1B5C /* GeohashKit.framework */; };
 		045F64F91AF7BD5800F52236 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F64F81AF7BD5800F52236 /* Geohash.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		045081581AF8B0F4008D78FF /* GeohashTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeohashTests.swift; path = GeohashKitTests/GeohashTests.swift; sourceTree = SOURCE_ROOT; };
+		0459355B1AFF59E5001D678B /* GeohashBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeohashBox.swift; sourceTree = "<group>"; };
 		045B12471AF47503004A1B5C /* GeohashKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeohashKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B124B1AF47503004A1B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045B124C1AF47503004A1B5C /* GeohashKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeohashKit.h; sourceTree = "<group>"; };
@@ -74,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				045F64F81AF7BD5800F52236 /* Geohash.swift */,
-				045B124C1AF47503004A1B5C /* GeohashKit.h */,
 				045B124A1AF47503004A1B5C /* Supporting Files */,
+				0459355B1AFF59E5001D678B /* GeohashBox.swift */,
 			);
 			path = GeohashKit;
 			sourceTree = "<group>";
@@ -83,6 +85,7 @@
 		045B124A1AF47503004A1B5C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				045B124C1AF47503004A1B5C /* GeohashKit.h */,
 				045B124B1AF47503004A1B5C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0459355C1AFF59E5001D678B /* GeohashBox.swift in Sources */,
 				045F64F91AF7BD5800F52236 /* Geohash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,7 @@ prefix func !(a: Parity) -> Parity {
 }
 
 let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (1 => 1, 23 => r, 31 => z)
-let BASE32_BITFLOW_INIT = 0b10000
+let BASE32_BITFLOW_INIT :UInt8 = 0b10000
 
 let NEIGHBORS : [CompassPoint : [Parity : String]] = [
     .East  : [ .Even   : "bc01fg45238967deuvhjyznpkmstqrwx" ],
@@ -69,7 +69,7 @@ public class Geohash {
             case .Even:
                 let mid = (lon.0 + lon.1) / 2
                 if(longitude >= mid) {
-                    base32char |= bit
+                    base32char |= Int(bit)
                     lon.0 = mid;
                 } else {
                     lon.1 = mid;
@@ -77,7 +77,7 @@ public class Geohash {
             case .Odd:
                 let mid = (lat.0 + lat.1) / 2
                 if(latitude >= mid) {
-                    base32char |= bit
+                    base32char |= Int(bit)
                     lat.0 = mid;
                 } else {
                     lat.1 = mid;
@@ -98,5 +98,45 @@ public class Geohash {
         } while count(geohash) < precision
         
         return geohash
+    }
+    
+    private static func unwrap_geohashbox(hash: String) -> GeohashBox? {
+        var parity_mode = Parity.Even;
+        var lat = (-90.0, 90.0)
+        var lon = (-180.0, 180.0)
+        
+        for c in hash {
+            let bitmap = find(BASE32, c)
+
+            if let bitmap = bitmap {
+                for var mask = Int(BASE32_BITFLOW_INIT); mask != 0; mask >>= 1 {
+                    switch (parity_mode) {
+                    case .Even:
+                        if(bitmap & mask != 0) {
+                            lon.0 = (lon.0 + lon.1) / 2
+                        } else {
+                            lon.1 = (lon.0 + lon.1) / 2
+                        }
+                    case .Odd:
+                        if(bitmap & mask != 0) {
+                            lat.0 = (lat.0 + lat.1) / 2
+                        } else {
+                            lat.1 = (lat.0 + lat.1) / 2
+                        }
+                    }
+                    
+                    parity_mode = !parity_mode
+                }
+            } else {
+                // Break on non geohash code char.
+                return nil
+            }
+        }
+
+        return GeohashBox(north: lat.0, south: lat.1, west: lon.0, east: lon.1)
+    }
+    
+    public static func decode(hash: String) -> (latitude: Double, longitude: Double)? {
+        return unwrap_geohashbox(hash)?.point()
     }
 }
