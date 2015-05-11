@@ -1,4 +1,6 @@
-# GeohashKit
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+
+# GeohashKit 
 
 ## Usage
 ### Encode
