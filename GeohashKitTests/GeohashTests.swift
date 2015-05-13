@@ -4,6 +4,11 @@
 //
 //  Tested are based on https://github.com/vyshane/geohash-tool/tree/master/Geohash%20Tool
 //
+//  useful toolkit: 
+//   * http://gmaps-samples.googlecode.com/svn/trunk/geocoder/singlegeocode.html
+//   * http://geohash.org
+//   * http://geohash.gofreerange.com
+//
 //  Created by Maxim Veksler on 5/5/15.
 //  (c) 2015 Maxim Veksler.
 //
@@ -35,6 +40,7 @@ class GeohashTests: XCTestCase {
     }
     
     // - MARK: decode
+    /// Testing latitude & longitude decode correctness, with epsilon precision.
     func aDecodeUnitTest(hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
         let point = Geohash.decode(hash);
         
@@ -47,7 +53,14 @@ class GeohashTests: XCTestCase {
         aDecodeUnitTest("spey61y", 43.296432495117, 5.3702545166016)
     }
     
-    
+    // - MARK: neighbors
+    func testNeighbors() {
+        let neighbors = Geohash.neighbors("sv8wrqfm")!
+        XCTAssertEqual(["sv8wrqfq", "sv8wrqfw", "sv8wrqft", "sv8wrqfs", "sv8wrqfk", "sv8wrqfh", "sv8wrqfj", "sv8wrqfn"], neighbors)
+        
+//        let neighbors = Geohash.neighbors("sp")!
+//        println(neighbors)
+    }
 
 }
 
