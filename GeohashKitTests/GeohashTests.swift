@@ -8,6 +8,7 @@
 //   * http://gmaps-samples.googlecode.com/svn/trunk/geocoder/singlegeocode.html
 //   * http://geohash.org
 //   * http://geohash.gofreerange.com
+//   * http://www.movable-type.co.uk/scripts/geohash.html
 //
 //  Created by Maxim Veksler on 5/5/15.
 //  (c) 2015 Maxim Veksler.
@@ -42,10 +43,10 @@ class GeohashTests: XCTestCase {
     // - MARK: decode
     /// Testing latitude & longitude decode correctness, with epsilon precision.
     func aDecodeUnitTest(hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
-        let point = Geohash.decode(hash);
+        let (latitude, longitude) = Geohash.decode(hash)!;
         
-        XCTAssertEqualWithAccuracy(point!.latitude, expectedLatitude, Double(FLT_EPSILON))
-        XCTAssertEqualWithAccuracy(point!.longitude, expectedLongitude, Double(FLT_EPSILON))
+        XCTAssertEqualWithAccuracy(latitude, expectedLatitude, Double(FLT_EPSILON))
+        XCTAssertEqualWithAccuracy(longitude, expectedLongitude, Double(FLT_EPSILON))
     }
 
     func testDecode() {
@@ -55,13 +56,15 @@ class GeohashTests: XCTestCase {
     
     // - MARK: neighbors
     func testNeighbors() {
-        let neighbors = Geohash.neighbors("sv8wrqfm")!
-        XCTAssertEqual(["sv8wrqfq", "sv8wrqfw", "sv8wrqft", "sv8wrqfs", "sv8wrqfk", "sv8wrqfh", "sv8wrqfj", "sv8wrqfn"], neighbors)
-        
-//        let neighbors = Geohash.neighbors("sp")!
-//        println(neighbors)
+        // Bugrashov, Tel Aviv, Israel
+        XCTAssertEqual(["sv8wrqfq", "sv8wrqfw", "sv8wrqft", "sv8wrqfs", "sv8wrqfk", "sv8wrqfh", "sv8wrqfj", "sv8wrqfn"], Geohash.neighbors("sv8wrqfm")!)
+        // Meridian Gardens
+        XCTAssertEqual(["gcpvpbpbp", "u10j00000", "u10hbpbpb", "u10hbpbp8", "gcpuzzzzx", "gcpuzzzzw", "gcpuzzzzy", "gcpvpbpbn"], Geohash.neighbors("gcpuzzzzz")!)
+        // Overkills are fun!
+        XCTAssertEqual(["cbsuv7ztq4345234323d", "cbsuv7ztq4345234323f", "cbsuv7ztq4345234323c", "cbsuv7ztq4345234323b", "cbsuv7ztq43452343238", "cbsuv7ztq43452343232", "cbsuv7ztq43452343233", "cbsuv7ztq43452343236"], Geohash.neighbors("cbsuv7ztq43452343239")!)
+        // France
+        XCTAssertEqual(["u001", "u003", "u002", "spbr", "spbp", "ezzz", "gbpb", "gbpc"], Geohash.neighbors("u000")!)
     }
-
 }
 
 
