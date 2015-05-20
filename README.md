@@ -33,6 +33,3 @@ Add ```github "maximveksler/GeohashKit"``` to your ```Cartfile```
 ## Author
 The MIT License (MIT)  
 Copyright (c) 2015 - [Maxim Veksler](maxim@vekslers.org)
-
-I’m actively maintaining this library. Please submit bug reports, pull requests and feature suggestions. 
-
