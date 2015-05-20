@@ -2,6 +2,9 @@
 
 # GeohashKit 
 
+GeohashKit is a native Swift implementation of the geohash protocol. Encode, decode and dynamic bounding box neighbor search is implemented. Much consideration went to design an API that allows wonderfully simple work flow.
+
+## API
 ### Decode
 ```swift
 Geohash.decode("ezs42")! // (latitude: 42.60498046875, longitude: -5.60302734375)
@@ -21,4 +24,13 @@ Geohash.encode(latitude: 42.6, longitude: -5.6) // "ezs42"
 ```swift
 Geohash.encode(latitude: -25.382708, longitude: -49.265506, 12) // "6gkzwgjzn820"
 ```
+
+## Install
+Add ```github "maximveksler/GeohashKit"``` to your ```Cartfile```
+
+## Author
+The MIT License (MIT)  
+Copyright (c) 2015 - [Maxim Veksler](maxim@vekslers.org)
+
+I’m actively maintaining this library. Please submit bug reports, pull requests and feature suggestions. 
 
