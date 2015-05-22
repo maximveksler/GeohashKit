@@ -28,7 +28,9 @@ Geohash.encode(latitude: -25.382708, longitude: -49.265506, 12) // "6gkzwgjzn820
 ## Install
 GeohashKit is distribured with [Carthage](https://github.com/Carthage/Carthage).
 
-Add ```github "maximveksler/GeohashKit"``` to your ```Cartfile```
+  1. Add ```github "maximveksler/GeohashKit"``` to your ```Cartfile```
+  2. Run ```carthage update --use-submodules``` to build the Framework
+  3. Drag *GeohashKit* into XCode's *Embedded Binaries* section
 
 ## Author
 The MIT License (MIT)  
