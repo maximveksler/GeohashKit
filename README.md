@@ -2,7 +2,7 @@
 
 # GeohashKit 
 
-GeohashKit is a native Swift implementation of the [geohash](http://en.wikipedia.org/wiki/Geohash). Encode, decode and dynamic bounding box neighbor search is implemented. Much consideration went to design an API that allows wonderfully elegent work flow.
+GeohashKit is a native Swift implementation of the [geohash](http://en.wikipedia.org/wiki/Geohash) hashing algorithem. Encode, decode and dynamic bounding box neighbor search is implemented. Much consideration went to design an API that allows wonderfully elegent work flow.
 
 ## API
 ### Decode
