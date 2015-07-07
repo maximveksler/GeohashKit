@@ -15,7 +15,7 @@
 //
 
 import XCTest
-import GeohashKit
+import Geohash
 
 class GeohashTests: XCTestCase {
     // - MARK: encode

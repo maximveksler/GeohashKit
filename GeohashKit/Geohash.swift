@@ -11,7 +11,7 @@
 
 public class Geohash {
     // - MARK: Public
-    public static func encode(#latitude: Double, longitude: Double, var _ precision: Int? = nil) -> String {
+    public static func encode(latitude latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
         return geohashbox(latitude: latitude, longitude: longitude, precision)!.hash
     }
     
@@ -21,7 +21,7 @@ public class Geohash {
     
     public static func neighbors(centerHash: String) -> [String]? {
         // neighbor precision *must* be them same as center'ed bounding box.
-        let precision = count(centerHash)
+        let precision = centerHash.characters.count
         
         if let box = geohashbox(centerHash) {
             let n = neighbor(box, direction: .North, precision: precision) // n
@@ -41,7 +41,7 @@ public class Geohash {
     }
     
     // - MARK: Private
-    static func geohashbox(#latitude: Double, longitude: Double, var _ precision: Int? = nil) -> GeohashBox? {
+    static func geohashbox(latitude latitude: Double, longitude: Double, var _ precision: Int? = nil) -> GeohashBox? {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
@@ -58,7 +58,7 @@ public class Geohash {
             precision = 5
         }
         
-        do {
+        repeat {
             switch (parity_mode) {
             case .Even:
                 let mid = (lon.0 + lon.1) / 2
@@ -89,7 +89,7 @@ public class Geohash {
                 base32char = 0
             }
             
-        } while count(geohash) < precision
+        } while geohash.characters.count < precision
         
         return GeohashBox(hash: geohash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
@@ -99,8 +99,8 @@ public class Geohash {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
-        for c in hash {
-            let bitmap = find(BASE32, c)
+        for c in hash.characters {
+            let bitmap = BASE32.indexOf(c)
             
             if let bitmap = bitmap {
                 for var mask = Int(BASE32_BITFLOW_INIT); mask != 0; mask >>= 1 {
@@ -165,5 +165,5 @@ prefix func !(a: Parity) -> Parity {
     return a == .Even ? .Odd : .Even
 }
 
-let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (1 => 1, 23 => r, 31 => z)
+let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
 let BASE32_BITFLOW_INIT :UInt8 = 0b10000
