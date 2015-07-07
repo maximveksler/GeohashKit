@@ -33,6 +33,6 @@ GeohashKit is distribured with [Carthage](https://github.com/Carthage/Carthage).
   2. Run ```carthage update --use-submodules``` to build the Framework
   3. Drag *GeohashKit* into XCode's *Embedded Binaries* section
 
-## Author
-The MIT License (MIT)  
-Copyright (c) 2015 - [Maxim Veksler](maxim@vekslers.org)
+## Footnotes
+Released under the MIT License (MIT)  
+Copyright (c) 2015 - [Maxim Veksler](maxim@vekslers.org)  
