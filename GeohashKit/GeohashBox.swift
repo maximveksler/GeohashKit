@@ -9,7 +9,7 @@
 struct GeohashBox {
     let hash: String
     
-    let north :Double // top latitude
+    let north: Double // top latitude
     let west: Double // left longitude
 
     let south: Double // bottom latitude
