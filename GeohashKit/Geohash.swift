@@ -2,8 +2,8 @@
 //  Geohash.swift
 //  GeohashKit
 //
-//  Created by David Troy on 30/5/08 https://github.com/davetroy/geohash-js/blob/master/geohash.js
 //  Created by Maxim Veksler on 5/4/15.
+//  Based on work done by David Troy https://github.com/davetroy/geohash-js/blob/master/geohash.js
 //
 //  (c) 2015 Maxim Veksler.
 //  Distributed under the MIT License
