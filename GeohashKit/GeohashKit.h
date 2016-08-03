@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Maxim Veksler. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for GeohashKit.
 FOUNDATION_EXPORT double GeohashKitVersionNumber;

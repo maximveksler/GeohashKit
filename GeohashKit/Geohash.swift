@@ -9,39 +9,57 @@
 //  Distributed under the MIT License
 //
 
-public class Geohash {
+enum CompassPoint {
+    case north // Top
+    case south // Bottom
+    case east // Right
+    case west  // Left
+}
+
+enum Parity {
+    case even, odd
+}
+
+prefix func !(a: Parity) -> Parity {
+    return a == .even ? .odd : .even
+}
+
+public struct Geohash {
+
+    private static let DecimalToBase32Map = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
+    private static let Base32BitflowInit: UInt8 = 0b10000
+
     // - MARK: Public
-    public static func encode(latitude latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
+    public static func encode(latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
         return geohashbox(latitude: latitude, longitude: longitude, precision)!.hash
     }
     
-    public static func decode(hash: String) -> (latitude: Double, longitude: Double)? {
+    public static func decode(_ hash: String) -> (latitude: Double, longitude: Double)? {
         return geohashbox(hash)?.point
     }
     
-    public static func neighbors(centerHash: String) -> [String]? {
+    public static func neighbors(_ centerHash: String) -> [String]? {
         // neighbor precision *must* be them same as center'ed bounding box.
         let precision = centerHash.characters.count
         
-        if let box = geohashbox(centerHash) {
-            let n = neighbor(box, direction: .North, precision: precision) // n
-            let s = neighbor(box, direction: .South, precision: precision) // s
-            let e = neighbor(box, direction: .East, precision: precision)  // e
-            let w = neighbor(box, direction: .West, precision: precision)  // w
-            let ne = neighbor(n, direction: .East, precision: precision)   // ne
-            let nw = neighbor(n, direction: .West, precision: precision)   // nw
-            let se = neighbor(s, direction: .East, precision: precision)   // se
-            let sw = neighbor(s, direction: .West, precision: precision)   // sw
+        guard let box = geohashbox(centerHash),
+            let n = neighbor(box, direction: .north, precision: precision), // n
+            let s = neighbor(box, direction: .south, precision: precision), // s
+            let e = neighbor(box, direction: .east, precision: precision),  // e
+            let w = neighbor(box, direction: .west, precision: precision),  // w
+            let ne = neighbor(n, direction: .east, precision: precision),   // ne
+            let nw = neighbor(n, direction: .west, precision: precision),   // nw
+            let se = neighbor(s, direction: .east, precision: precision),   // se
+            let sw = neighbor(s, direction: .west, precision: precision)   // sw
+            else { return nil }
 
-            // in clockwise order
-            return [n!.hash, ne!.hash, e!.hash, se!.hash, s!.hash, sw!.hash, w!.hash, nw!.hash]
-        } else {
-            return nil
-        }
+        // in clockwise order
+        return [n.hash, ne.hash, e.hash, se.hash, s.hash, sw.hash, w.hash, nw.hash]
     }
     
     // - MARK: Private
-    static func geohashbox(latitude latitude: Double, longitude: Double, var _ precision: Int? = nil) -> GeohashBox? {
+    static func geohashbox(latitude: Double, longitude: Double, _ precision: Int? = nil) -> GeohashBox? {
+        var precision = precision
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
@@ -49,9 +67,9 @@ public class Geohash {
         var geohash = String()
         
         // Loop helpers
-        var parity_mode = Parity.Even;
+        var parity_mode = Parity.even;
         var base32char = 0
-        var bit = BASE32_BITFLOW_INIT
+        var bit = Base32BitflowInit
         
         // Set precision to 5 if not specified.
         if precision == nil {
@@ -60,7 +78,7 @@ public class Geohash {
         
         repeat {
             switch (parity_mode) {
-            case .Even:
+            case .even:
                 let mid = (lon.0 + lon.1) / 2
                 if(longitude >= mid) {
                     base32char |= Int(bit)
@@ -68,7 +86,7 @@ public class Geohash {
                 } else {
                     lon.1 = mid;
                 }
-            case .Odd:
+            case .odd:
                 let mid = (lat.0 + lat.1) / 2
                 if(latitude >= mid) {
                     base32char |= Int(bit)
@@ -84,8 +102,8 @@ public class Geohash {
             bit >>= 1
             
             if(bit == 0b00000) {
-                geohash += String(BASE32[base32char])
-                bit = BASE32_BITFLOW_INIT // set next character round.
+                geohash += String(DecimalToBase32Map[base32char])
+                bit = Base32BitflowInit // set next character round.
                 base32char = 0
             }
             
@@ -94,76 +112,60 @@ public class Geohash {
         return GeohashBox(hash: geohash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
     
-    static func geohashbox(hash: String) -> GeohashBox? {
-        var parity_mode = Parity.Even;
+    static func geohashbox(_ hash: String) -> GeohashBox? {
+        var parity_mode = Parity.even;
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
         for c in hash.characters {
-            let bitmap = BASE32.indexOf(c)
-            
-            if let bitmap = bitmap {
-                for var mask = Int(BASE32_BITFLOW_INIT); mask != 0; mask >>= 1 {
-                    switch (parity_mode) {
-                    case .Even:
-                        if(bitmap & mask != 0) {
-                            lon.0 = (lon.0 + lon.1) / 2
-                        } else {
-                            lon.1 = (lon.0 + lon.1) / 2
-                        }
-                    case .Odd:
-                        if(bitmap & mask != 0) {
-                            lat.0 = (lat.0 + lat.1) / 2
-                        } else {
-                            lat.1 = (lat.0 + lat.1) / 2
-                        }
-                    }
-                    
-                    parity_mode = !parity_mode
-                }
-            } else {
+            guard let bitmap = DecimalToBase32Map.index(of: c) else {
                 // Break on non geohash code char.
                 return nil
+            }
+
+            var mask = Int(Base32BitflowInit)
+            while mask != 0 {
+
+                switch (parity_mode) {
+                case .even:
+                    if(bitmap & mask != 0) {
+                        lon.0 = (lon.0 + lon.1) / 2
+                    } else {
+                        lon.1 = (lon.0 + lon.1) / 2
+                    }
+                case .odd:
+                    if(bitmap & mask != 0) {
+                        lat.0 = (lat.0 + lat.1) / 2
+                    } else {
+                        lat.1 = (lat.0 + lat.1) / 2
+                    }
+                }
+
+                parity_mode = !parity_mode
+                mask >>= 1
             }
         }
 
         return GeohashBox(hash: hash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
     
-    static func neighbor(box: GeohashBox?, direction: CompassPoint, precision: Int) -> GeohashBox? {
-        if let box = box {
-            switch (direction) {
-            case .North:
-                let new_latitude = box.point.latitude + box.size.latitude // North is upper in the latitude scale
-                return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
-            case .South:
-                let new_latitude = box.point.latitude - box.size.latitude // South is lower in the latitude scale
-                return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
-            case .East:
-                let new_longitude = box.point.longitude + box.size.longitude // East is bigger in the longitude scale
-                return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
-            case .West:
-                let new_longitude = box.point.longitude - box.size.longitude // West is lower in the longitude scale
-                return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
-            }
-        } else {
-            return nil
+    static func neighbor(_ box: GeohashBox?, direction: CompassPoint, precision: Int) -> GeohashBox? {
+        guard let box = box else { return nil }
+
+        switch (direction) {
+        case .north:
+            let new_latitude = box.point.latitude + box.size.latitude // North is upper in the latitude scale
+            return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
+        case .south:
+            let new_latitude = box.point.latitude - box.size.latitude // South is lower in the latitude scale
+            return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
+        case .east:
+            let new_longitude = box.point.longitude + box.size.longitude // East is bigger in the longitude scale
+            return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
+        case .west:
+            let new_longitude = box.point.longitude - box.size.longitude // West is lower in the longitude scale
+            return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
         }
     }
-    
-}
 
-enum CompassPoint {
-    case North // Top
-    case South // Bottom
-    case East // Right
-    case West  // Left
 }
-
-enum Parity { case Even, Odd }
-prefix func !(a: Parity) -> Parity {
-    return a == .Even ? .Odd : .Even
-}
-
-let BASE32 = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
-let BASE32_BITFLOW_INIT :UInt8 = 0b10000
