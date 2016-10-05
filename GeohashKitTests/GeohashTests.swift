@@ -15,9 +15,10 @@
 //
 
 import XCTest
-import GeohashKit
+@testable import GeohashKit
 
 class GeohashTests: XCTestCase {
+
     // - MARK: encode
     func testEncode() {
         // geohash.org
@@ -42,7 +43,7 @@ class GeohashTests: XCTestCase {
     
     // - MARK: decode
     /// Testing latitude & longitude decode correctness, with epsilon precision.
-    func aDecodeUnitTest(hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
+    func aDecodeUnitTest(_ hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
         let (latitude, longitude) = Geohash.decode(hash)!;
         
         XCTAssertEqualWithAccuracy(latitude, expectedLatitude, accuracy: Double(FLT_EPSILON))
