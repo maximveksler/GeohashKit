@@ -26,12 +26,12 @@ prefix func !(a: Parity) -> Parity {
 
 public struct Geohash {
 
-    private static let DecimalToBase32Map = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
-    private static let Base32BitflowInit: UInt8 = 0b10000
+    fileprivate static let DecimalToBase32Map = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
+    fileprivate static let Base32BitflowInit: UInt8 = 0b10000
 
     // - MARK: Public
-    public static func encode(latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
-        return geohashbox(latitude: latitude, longitude: longitude, precision)!.hash
+    public static func encode(_ latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
+        return geohashbox(latitude, longitude: longitude, precision)!.hash
     }
     
     public static func decode(_ hash: String) -> (latitude: Double, longitude: Double)? {
@@ -58,7 +58,7 @@ public struct Geohash {
     }
     
     // - MARK: Private
-    static func geohashbox(latitude: Double, longitude: Double, _ precision: Int? = nil) -> GeohashBox? {
+    static func geohashbox(_ latitude: Double, longitude: Double, _ precision: Int? = nil) -> GeohashBox? {
         var precision = precision
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
@@ -107,7 +107,7 @@ public struct Geohash {
                 base32char = 0
             }
             
-        } while geohash.characters.count < precision
+        } while geohash.characters.count < precision!
         
         return GeohashBox(hash: geohash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
@@ -155,16 +155,16 @@ public struct Geohash {
         switch (direction) {
         case .north:
             let new_latitude = box.point.latitude + box.size.latitude // North is upper in the latitude scale
-            return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
+            return geohashbox(new_latitude, longitude: box.point.longitude, precision)
         case .south:
             let new_latitude = box.point.latitude - box.size.latitude // South is lower in the latitude scale
-            return geohashbox(latitude: new_latitude, longitude: box.point.longitude, precision)
+            return geohashbox(new_latitude, longitude: box.point.longitude, precision)
         case .east:
             let new_longitude = box.point.longitude + box.size.longitude // East is bigger in the longitude scale
-            return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
+            return geohashbox(box.point.latitude, longitude: new_longitude, precision)
         case .west:
             let new_longitude = box.point.longitude - box.size.longitude // West is lower in the longitude scale
-            return geohashbox(latitude: box.point.latitude, longitude: new_longitude, precision)
+            return geohashbox(box.point.latitude, longitude: new_longitude, precision)
         }
     }
 
