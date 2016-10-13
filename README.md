@@ -34,5 +34,4 @@ GeohashKit is distribured with [Carthage](https://github.com/Carthage/Carthage).
   3. Drag *GeohashKit* into XCode's *Embedded Binaries* section
 
 ## License
-Copyright (c) 2015 - Maxim Veksler   
-Released under the MIT License (MIT)
+MIT License (MIT)
