@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
         s.name         = "JWGeohashKit"
-        s.version      = "0.1"
+        s.version      = "0.2"
         s.summary      = "Fast, accurate, fully tested geohashing library for Swift"
         s.description  = "```swift"
 
