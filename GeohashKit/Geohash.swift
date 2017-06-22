@@ -107,7 +107,7 @@ public struct Geohash {
                 base32char = 0
             }
             
-        } while geohash.characters.count < precision
+        } while geohash.characters.count < precision!
         
         return GeohashBox(hash: geohash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
