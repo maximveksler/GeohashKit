@@ -4,8 +4,7 @@ Pod::Spec.new do |s|
         s.summary      = "Fast, accurate, fully tested geohashing library for Swift"
         s.description  = "```swift"
 
-        # s.homepage     = "https://github.com/maximveksler/GeohashKit"
-        s.homepage     = "https://github.com/jwitcig/GeohashKit"
+        s.homepage     = "https://github.com/maximveksler/GeohashKit"
 
         s.license      = "MIT License"
 
