@@ -4,13 +4,13 @@ Pod::Spec.new do |s|
         s.summary      = "Fast, accurate, fully tested geohashing library for Swift"
         s.description  = "```swift"
 
-        s.homepage     = "https://github.com/maximveksler/GeohashKit"
+        s.homepage     = "https://github.com/jwitcig/GeohashKit"
 
         s.license      = "MIT License"
 
         s.author       = "Maxim Veksler"
 
-        s.source       = { :git => "https://github.com/maximveksler/GeohashKit.git", :tag => "0.1" }
+        s.source       = { :git => "https://github.com/jwitcig/GeohashKit.git", :tag => "0.2" }
 
         s.source_files = "GeohashKit/*.{h,m,swift}"
 

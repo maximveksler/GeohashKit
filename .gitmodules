@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/GeohashKit"]
+	path = Carthage/Checkouts/GeohashKit
+	url = https://github.com/maximveksler/GeohashKit.git
