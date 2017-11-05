@@ -25,12 +25,13 @@ prefix func !(a: Parity) -> Parity {
 }
 
 public struct Geohash {
-
-    private static let DecimalToBase32Map = Array("0123456789bcdefghjkmnpqrstuvwxyz".characters) // decimal to 32base mapping (0 => "0", 31 => "z")
+    public static let defaultPrecision = 5
+    
+    private static let DecimalToBase32Map = Array("0123456789bcdefghjkmnpqrstuvwxyz") // decimal to 32base mapping (0 => "0", 31 => "z")
     private static let Base32BitflowInit: UInt8 = 0b10000
 
     // - MARK: Public
-    public static func encode(latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
+    public static func encode(latitude: Double, longitude: Double, _ precision: Int = Geohash.defaultPrecision) -> String {
         return geohashbox(latitude: latitude, longitude: longitude, precision)!.hash
     }
     
@@ -40,7 +41,7 @@ public struct Geohash {
     
     public static func neighbors(_ centerHash: String) -> [String]? {
         // neighbor precision *must* be them same as center'ed bounding box.
-        let precision = centerHash.characters.count
+        let precision = centerHash.count
         
         guard let box = geohashbox(centerHash),
             let n = neighbor(box, direction: .north, precision: precision), // n
@@ -58,8 +59,7 @@ public struct Geohash {
     }
     
     // - MARK: Private
-    static func geohashbox(latitude: Double, longitude: Double, _ precision: Int? = nil) -> GeohashBox? {
-        var precision = precision
+    static func geohashbox(latitude: Double, longitude: Double, _ precision: Int = Geohash.defaultPrecision) -> GeohashBox? {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
@@ -70,11 +70,6 @@ public struct Geohash {
         var parity_mode = Parity.even;
         var base32char = 0
         var bit = Base32BitflowInit
-        
-        // Set precision to 5 if not specified.
-        if precision == nil {
-            precision = 5
-        }
         
         repeat {
             switch (parity_mode) {
@@ -107,7 +102,7 @@ public struct Geohash {
                 base32char = 0
             }
             
-        } while geohash.characters.count < precision
+        } while geohash.count < precision
         
         return GeohashBox(hash: geohash, north: lat.1, west: lon.0, south: lat.0, east: lon.1)
     }
@@ -117,7 +112,7 @@ public struct Geohash {
         var lat = (-90.0, 90.0)
         var lon = (-180.0, 180.0)
         
-        for c in hash.characters {
+        for c in hash {
             guard let bitmap = DecimalToBase32Map.index(of: c) else {
                 // Break on non geohash code char.
                 return nil

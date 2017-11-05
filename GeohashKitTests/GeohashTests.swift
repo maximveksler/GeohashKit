@@ -46,8 +46,8 @@ class GeohashTests: XCTestCase {
     func aDecodeUnitTest(_ hash: String, _ expectedLatitude: Double, _ expectedLongitude: Double) {
         let (latitude, longitude) = Geohash.decode(hash)!;
         
-        XCTAssertEqualWithAccuracy(latitude, expectedLatitude, accuracy: Double(FLT_EPSILON))
-        XCTAssertEqualWithAccuracy(longitude, expectedLongitude, accuracy: Double(FLT_EPSILON))
+        XCTAssertEqual(latitude, expectedLatitude, accuracy: Double(Float.ulpOfOne))
+        XCTAssertEqual(longitude, expectedLongitude, accuracy: Double(Float.ulpOfOne))
     }
 
     func testDecode() {
