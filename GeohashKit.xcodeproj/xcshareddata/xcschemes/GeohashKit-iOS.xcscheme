@@ -16,21 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "045B12461AF47503004A1B5C"
                BuildableName = "GeohashKit.framework"
-               BlueprintName = "GeohashKit"
-               ReferencedContainer = "container:GeohashKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "045B12511AF47503004A1B5C"
-               BuildableName = "GeohashKitTests.xctest"
-               BlueprintName = "GeohashKitTests"
+               BlueprintName = "GeohashKit-iOS"
                ReferencedContainer = "container:GeohashKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,8 +27,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -60,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "045B12461AF47503004A1B5C"
             BuildableName = "GeohashKit.framework"
-            BlueprintName = "GeohashKit"
+            BlueprintName = "GeohashKit-iOS"
             ReferencedContainer = "container:GeohashKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,7 +68,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "045B12461AF47503004A1B5C"
             BuildableName = "GeohashKit.framework"
-            BlueprintName = "GeohashKit"
+            BlueprintName = "GeohashKit-iOS"
             ReferencedContainer = "container:GeohashKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -101,7 +86,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "045B12461AF47503004A1B5C"
             BuildableName = "GeohashKit.framework"
-            BlueprintName = "GeohashKit"
+            BlueprintName = "GeohashKit-iOS"
             ReferencedContainer = "container:GeohashKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
