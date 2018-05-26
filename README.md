@@ -1,6 +1,7 @@
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+*** Looking for a core committer to help maintain the library, Swift evolution make the code collect virtual dust. ***
 
-## EOF Notice: Looking for help maintaining the Library. The code is collecting virtual dust and needs some love. Unless help will be found by EOF Swift 3 I will have no other choice but to annouch the library as DEPRECATED. Max.
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 
 # GeohashKit 
 
