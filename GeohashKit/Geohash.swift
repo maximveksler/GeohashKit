@@ -113,7 +113,7 @@ public struct Geohash {
         var lon = (-180.0, 180.0)
         
         for c in hash {
-            guard let bitmap = DecimalToBase32Map.index(of: c) else {
+            guard let bitmap = DecimalToBase32Map.firstIndex(of: c) else {
                 // Break on non geohash code char.
                 return nil
             }
